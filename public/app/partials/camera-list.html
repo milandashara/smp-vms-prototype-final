@@ -13,10 +13,10 @@
 
 
         <tr ng-repeat="camera in cameras | filter:query | orderBy:orderProp">
-            <td><a href="/cameras/{{camera.id}}">
+            <td><a href="/api/cameras/{{camera.id}}">
                 {{camera.name}}
             </a></td>
-            <td><a href="/cameras/{{camera.id}}"> {{camera.node}}</a></td>
+            <td><a href="/api/cameras/{{camera.id}}"> {{camera.node}}</a></td>
 
             <!--<td>-->
             <!--<a href="@routes.Products.details(product.id)"><i class="icon icon-pencil"></i></a>-->
