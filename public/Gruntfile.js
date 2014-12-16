@@ -63,10 +63,10 @@ module.exports = function(grunt) {
                 separator: ';'
             },
             dist: {
-                src: ['scripts/vendor/gmap.js',
-                    'scripts/vendor/angular.min.js',
-                    'scripts/vendor/angular-animate.min.js',
-                    'scripts/vendor/angular-route.min.js',
+                src: [
+                    'scripts/vendor/angular.js',
+                    'scripts/vendor/angular-animate.js',
+                    'scripts/vendor/angular-route.js',
                     'scripts/vendor/underscore-min.js',
                     'scripts/vendor/rocha.js',
                     'scripts/vendor/raphael.min.js',
@@ -77,8 +77,8 @@ module.exports = function(grunt) {
                     'scripts/vendor/angular-wizard.js',
                     'scripts/vendor/angular-ui-tree.js',
                     'scripts/vendor/jquery.vmap.min.js',
-                    'scripts/extras.js',
-                    'app/*.js' ],
+                    'scripts/extras.js'
+                ],
                 dest: 'dist/app.js'
             }
         },
