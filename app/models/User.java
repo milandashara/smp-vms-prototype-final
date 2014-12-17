@@ -46,7 +46,7 @@ public class User extends Model{
     @ManyToOne
     public UserType userType;
 
-    @ManyToMany(mappedBy = "user")
+    @ManyToMany
     public List<Camera> favouriteCameras;
 
     public static Finder<Long, User> find = new Finder(Long.class, User.class);

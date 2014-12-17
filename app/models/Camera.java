@@ -48,7 +48,7 @@ public class Camera extends Model {
 
     public static Finder<Long, Camera> find = new Finder(Long.class, Camera.class);
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "favouriteCameras")
     public List<User> users;
 
 //    public List<ValidationError> validate() {
