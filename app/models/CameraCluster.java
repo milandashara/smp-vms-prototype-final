@@ -23,5 +23,8 @@ public class CameraCluster extends Model {
     @OneToMany(mappedBy = "cameraCluster", cascade = CascadeType.REMOVE)
     public List<Camera> cameras;
 
+    @OneToOne(mappedBy = "cameraCluster")
+    public CameraAccessProfile cameraAccessProfile;
+
     public static Finder<Long, CameraCluster> find = new Finder(Long.class, CameraCluster.class);
 }
