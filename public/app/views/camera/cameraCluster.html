@@ -23,6 +23,17 @@
                 </div>
                 <div class="col-sm-5 col-xs-6 filter-result-info">
                         <button class="btn btn-default" ng-click="open('sm')">Add cluster</button>
+                      <div class="btn-group" dropdown >
+                        <button type="button" class="btn btn-success dropdown-toggle"> Action <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a ng-click="test()">Action</a></li>
+                            <li><a href="javascript:;">Another action</a></li>
+                            <li><a href="javascript:;">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:;">Separated link</a></li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -49,17 +60,7 @@
             <tr data-ng-repeat="store in currentPageStores">
                 <td>{{store.name}}</td>
                 <td>
-                    <div class="btn-group" dropdown >
-                        <button type="button" class="btn btn-success dropdown-toggle"> Action <span class="caret"></span></button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a ng-click="test()">Action</a></li>
-                            <li><a href="javascript:;">Another action</a></li>
-                            <li><a href="javascript:;">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="javascript:;">Separated link</a></li>
-                        </ul>
-                    </div>
-                </td>
+                  </td>
             </tr>
             </tbody>
         </table>
