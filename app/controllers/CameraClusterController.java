@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.inject.Inject;
 import models.Camera;
 import models.CameraCluster;
-import play.data.DynamicForm;
 import play.data.validation.ValidationError;
 import play.i18n.Messages;
 import play.libs.Json;
@@ -27,22 +26,22 @@ public class CameraClusterController extends Controller {
 
     @Inject
     private CameraClusterService cameraClusterService;
-    Form<CameraCluster> cameraClusterForm= Form.form(CameraCluster.class);
 
-    public Result findAll(String search)
-    {
+    private Form<CameraCluster> cameraClusterForm = Form.form(CameraCluster.class);
+
+    public Result findAll(String search) {
         return ok(Json.toJson(cameraClusterService.search(search)));
+
     }
 
-    public  Result get(Long id) {
+    public Result get(Long id) {
         return ok(Json.toJson(cameraClusterService.findById(id)));
     }
 
-    public Result add()
-    {
+    public Result add() {
         Form<CameraCluster> boundForm = cameraClusterForm.bindFromRequest();
 
-        if(cameraClusterForm.hasErrors())
+        if (cameraClusterForm.hasErrors())
             return badRequest(cameraClusterForm.errorsAsJson());
 
         CameraCluster cameraCluster = boundForm.get();
@@ -58,16 +57,15 @@ public class CameraClusterController extends Controller {
         }
 
     }
-    public Result modify(long id)
-    {
-        JsonNode cameraClusterJson = request().body().asJson();
 
-        cameraClusterForm.bind(cameraClusterJson);
+    public Result modify(long id) {
 
-        if(cameraClusterForm.hasErrors())
+        Form<CameraCluster> boundForm = cameraClusterForm.bindFromRequest();
+
+        if (cameraClusterForm.hasErrors())
             return badRequest(cameraClusterForm.errorsAsJson());
 
-        CameraCluster cameraCluster = cameraClusterForm.get();
+        CameraCluster cameraCluster = boundForm.get();
         cameraCluster.id = id;
 
         List<ValidationError> errors = cameraClusterService.modifyCameraCluster(cameraCluster);
@@ -82,13 +80,12 @@ public class CameraClusterController extends Controller {
     }
 
 
-    public Result getAffectedCamerasBeforeDelete(long id)
-    {
+    public Result getAffectedCamerasBeforeDelete(long id) {
         CameraCluster cameraCluster = cameraClusterService.findById(id);
         return ok(Json.toJson(cameraCluster.cameras));
     }
 
-    public   Result delete(Long id) {
+    public Result delete(Long id) {
 
         List<ValidationError> errors = cameraClusterService.deleteCameraCluster(id);
 
@@ -100,8 +97,5 @@ public class CameraClusterController extends Controller {
             result.put("success", String.format(Messages.get("cameraCluster.deleteSuccess")));
             return ok(Json.toJson(result));
         }
-
     }
-
-
 }

@@ -69,6 +69,8 @@ public class CameraClusterDaoImpl implements CameraClusterDao {
 
     @Override
     public List<CameraCluster> findByCameraClusterNameExceptGivenId(String name, Long id) {
-        return null;
+        String query = "find cameracluster where cameracluster.name=:name and id != :id";
+        return CameraCluster.find.setQuery(query).setParameter("name",name).setParameter("id",id).findList();
+
     }
 }

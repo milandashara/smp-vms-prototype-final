@@ -32,7 +32,7 @@ public class CameraClusterServiceImpl implements CameraClusterService {
 
     @Override
     public CameraCluster findById(Long id) {
-        return null;
+        return cameraClusterBLL.findById(id);
     }
 
     @Override
@@ -42,11 +42,11 @@ public class CameraClusterServiceImpl implements CameraClusterService {
 
     @Override
     public List<ValidationError> modifyCameraCluster(CameraCluster cameraCluster) {
-        return null;
+        return cameraClusterBLL.modifyCameraCluster(cameraCluster);
     }
 
     @Override
     public List<ValidationError> deleteCameraCluster(Long id) {
-        return null;
+        return cameraClusterBLL.deleteCameraCluster(id);
     }
 }

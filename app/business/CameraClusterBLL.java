@@ -19,7 +19,7 @@ public interface CameraClusterBLL {
 
     List<ValidationError> addCameraCluster(CameraCluster cameraCluster);
 
-    List<ValidationError> updateCameraCluster(CameraCluster cameraCluster);
+    List<ValidationError> modifyCameraCluster(CameraCluster cameraCluster);
 
     List<ValidationError> deleteCameraCluster(Long id);
 
