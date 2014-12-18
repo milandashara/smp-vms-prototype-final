@@ -19,6 +19,7 @@ public class CameraCluster extends Model {
 
     public String name;
 
+    @OneToMany
     public List<Camera> cameras;
 
     @OneToOne(mappedBy = "cameraCluster")
