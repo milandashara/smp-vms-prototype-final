@@ -7,10 +7,13 @@
     - !!models.Camera
         id:                 1
         name:               camera 1
-        node:               node 1
-        locationName:       one north
+        friendly_name:      camera 1
+        node_name:               node 1
+        camera:             1
+        location_name:       one north
         latitude:           0.1545635
         longitude:          135.234234234
+        quality:            1
         cameraCluster:      *dbsCluster
 
 
