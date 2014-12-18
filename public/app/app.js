@@ -8,7 +8,8 @@ var app = angular.module("app", [
     "ui.bootstrap",
     "app.ui.ctrls",
     "app.controllers",
-    "app.directives"]).run(["$rootScope", "$location",
+    "app.directives",
+    "smpvmsServices"]).run(["$rootScope", "$location",
     function ($rootScope, $location) {
 
         $(window).load(function () {
