@@ -11,5 +11,6 @@ GET         /api/cameras/:id                @controllers.Cameras.get(id:Long)
 POST        /api/cameras                    @controllers.Cameras.add()
 PUT         /api/cameras/:id                @controllers.Cameras.update(id:Long)
 DELETE      /api/cameras/:id                @controllers.Cameras.delete(id:Long)
+POST        /api/cameraCluster              @controllers.CameraClusterController.add()
 # Map static resources from the /public folder to the /assets URL path
 GET         /*file                           controllers.Assets.at(path="/public", file)

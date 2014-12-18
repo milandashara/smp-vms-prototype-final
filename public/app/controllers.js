@@ -3,7 +3,7 @@
  Main controllers for the app
  */
 
-angular.module("app.controllers", []).controller("AdminAppCtrl", ["$scope", "$location",
+ var controlGlobal = angular.module("app.controllers", []).controller("AdminAppCtrl", ["$scope", "$location",
         function($scope, $location) {
             $scope.checkIfOwnPage = function() {
 
@@ -31,7 +31,117 @@ angular.module("app.controllers", []).controller("AdminAppCtrl", ["$scope", "$lo
 
 
         }
-    ]);
+    ])
+    .controller('cameraController', function ($scope) {
+    $scope.cameras = [];
+    $scope.camera = null;
+    $scope.editMode = false;
+
+    //get camera
+    $scope.get = function () {
+        $scope.camera = this.camera;
+        $('#viewModal').modal('show');
+    };
+
+    //get all cameras
+    $scope.getAll = function () {
+        //cameraFactory.getcamerasList().success(function (data, status) {
+        //    $scope.cameras = data;
+        //
+        //    $scope.totalItems = $scope.cameras.length;
+        //    $scope.currentPage = 1;
+        //    $scope.numPerPage = 5;
+        //
+        //    $scope.paginate = function (value) {
+        //        var begin, end, index;
+        //        begin = ($scope.currentPage - 1) * $scope.numPerPage;
+        //        end = begin + $scope.numPerPage;
+        //        index = $scope.cameras.indexOf(value);
+        //        return (begin <= index && index < end);
+        //    };
+        //}).error(function (data) {
+        //    $scope.error = "An Error has occurred while Loading cameras! " + data.ExceptionMessage;
+        //});
+    };
+
+    // add camera
+    $scope.add = function () {
+        //var currentcamera = $scope.camera;
+        //if (currentcamera != null && currentcamera.nodes != null && currentcamera.name && currentcamera.location && currentcamera.groupname) {
+        //    cameraFactory.addcamera(currentcamera).success(function (data) {
+        //        $scope.addMode = false;
+        //        currentcamera.cameraId = data;
+        //        $scope.cameras.push(currentcamera);
+        //
+        //        //reset form
+        //        $scope.camera = null;
+        //        $('#cameraModel').modal('hide');
+        //        $scope.getAll();
+        //    }).error(function (data) {
+        //        $scope.error = "An Error has occurred while Adding camera! " + data.ExceptionMessage;
+        //    });
+        //}
+    };
+
+    //edit camera
+    $scope.edit = function () {
+        $scope.camera = this.camera;
+        $scope.editMode = true;
+        $('#cameraModel').modal('show');
+    };
+
+    //update camera
+    $scope.update = function () {
+        //var currentcamera = this.camera;
+        //cameraFactory.updatecamera(currentcamera).success(function (data) {
+        //    currentcamera.editMode = false;
+        //    $('#cameraModel').modal('hide');
+        //}).error(function (data) {
+        //    $scope.error = "An Error has occurred while Updating camera! " + data.ExceptionMessage;
+        //});
+    };
+
+    // delete camera
+    $scope.delete = function () {
+        //currentcamera = $scope.camera;
+        //cameraFactory.deletecamera(currentcamera).success(function (data) {
+        //    $('#confirmModal').modal('hide');
+        //    $scope.cameras.pop(currentcamera);
+        //    $scope.getAll();
+        //}).error(function (data) {
+        //    $scope.error = "An Error has occurred while Deleting camera! " + data.ExceptionMessage;
+        //    $('#confirmModal').modal('hide');
+        //});
+    };
+
+
+//Model popup events
+    $scope.showadd = function () {
+        $scope.camera = null;
+        $scope.editMode = false;
+        $('#cameraModel').modal('show');
+    };
+
+    $scope.showedit = function () {
+        $('#cameraModel').modal('show');
+    };
+
+    $scope.showconfirm = function (data) {
+        $scope.camera = data;
+        $('#confirmModal').modal('show');
+    };
+
+    $scope.cancel = function () {
+        $scope.camera = null;
+        $('#cameraModel').modal('hide');
+    };
+
+    // initialize your cameras data
+    $scope.getAll();
+
+
+})
+;
 
 /*
  App Ui Controllers

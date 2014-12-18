@@ -19,8 +19,6 @@ public class CameraCluster extends Model {
 
     public String name;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cameraCluster", cascade = CascadeType.REMOVE)
     public List<Camera> cameras;
 
     public static Finder<Long, CameraCluster> find = new Finder(Long.class, CameraCluster.class);

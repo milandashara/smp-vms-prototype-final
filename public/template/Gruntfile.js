@@ -67,6 +67,7 @@ module.exports = function(grunt) {
                     'scripts/vendor/angular.min.js',
                     'scripts/vendor/angular-animate.min.js',
                     'scripts/vendor/angular-route.min.js',
+                    'scripts/vendor/angular-resource.js',
                     'scripts/vendor/underscore-min.js',
                     'scripts/vendor/rocha.js',
                     'scripts/vendor/raphael.min.js',

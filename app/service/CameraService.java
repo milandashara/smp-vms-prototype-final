@@ -9,6 +9,7 @@ import java.util.List;
  * Created by milan on 12/9/2014.
  */
 public interface CameraService {
+
     public List<Camera> findAll();
 
     List<Camera> search(String searchStr);

@@ -64,7 +64,10 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
+                    'scripts/vendor/bootstrap.min.js',
                     'scripts/vendor/angular.js',
+                    'scripts/vendor/angular-ui-bootstrap.js',
+                    'scripts/vendor/angular-resource.js',
                     'scripts/vendor/angular-animate.js',
                     'scripts/vendor/angular-route.js',
                     'scripts/vendor/underscore-min.js',
@@ -90,7 +93,7 @@ module.exports = function(grunt) {
         connect: {
             server: {
                 options: {
-                    hostname: 'localhost',
+                    hostname: '0.0.0.0',
                     port: 8888
                 }
             }
