@@ -68,7 +68,8 @@ public class CameraBLLImpl implements CameraBLL {
         try {
             cameraDao.updateCamera(camera);
         } catch (Exception e) {
-            //add errors
+            ValidationError ve=new ValidationError(e.getMessage(),e.getMessage());
+            errors.add(ve);
         }
 
         return errors;

@@ -52,7 +52,6 @@ public class CamerasTest {
 //        });
     }
 
-
     /**
      * Testing controller sample
      */
