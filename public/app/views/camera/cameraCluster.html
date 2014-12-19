@@ -1,30 +1,16 @@
-
 <div class="page page-table" data-ng-controller="tableCtrl">
 
-    <section class="panel panel-default table-dynamic">
-        <div class="panel-heading"><strong><i class="fa fa-list panel-ico"></i>camera cluster table</strong></div>
 
-        <div class="table-filters">
-            <div class="row">
-                <div class="col-sm-4 col-xs-6">
-                    <form>
-                        <input type="text"
-                               placeholder="search"
-                               class="form-control"
-                               data-ng-model="searchKeywords"
-                               data-ng-keyup="search()">
-                    </form>
-                </div>
-                <div></div>
-                <div class="col-sm-3 col-xs-6 filter-result-info">
-                    <span>
-                        Showing {{filteredStores.length}}/{{stores.length}} entries
-                    </span>
-                </div>
-                <div class="col-sm-5 col-xs-6 filter-result-info">
-                        <button class="btn btn-default" ng-click="open('sm')">Add cluster</button>
-                      <div class="btn-group" dropdown >
-                        <button type="button" class="btn btn-success dropdown-toggle"> Action <span class="caret"></span></button>
+    <section>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="panel panel-default ">
+                    <button class="btn btn-default" ng-click="open('sm')">Add cluster</button>
+                    <div class="btn-group" dropdown>
+                        <button type="button" class="btn btn-success dropdown-toggle"> Action <span
+                                class="caret"></span>
+                        </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a ng-click="test()">Action</a></li>
                             <li><a href="javascript:;">Another action</a></li>
@@ -33,64 +19,95 @@
                             <li><a href="javascript:;">Separated link</a></li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
+    </section>
 
-        <table class="table table-bordered table-striped table-responsive">
-            <thead>
-            <tr>
-                <th class="col-md-10"><div class=" th"  >
-                    Cluster Name
+    <section>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default table-dynamic">
+                    <div class="panel-heading"><strong><i class="fa fa-list panel-ico"></i>camera cluster table</strong>
+                    </div>
+
+                    <div class="table-filters row">
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-6">
+                                <form>
+                                    <input type="text"
+                                           placeholder="search"
+                                           class="form-control"
+                                           data-ng-model="searchKeywords"
+                                           data-ng-keyup="search()">
+                                </form>
+                            </div>
+                            <div class="col-sm-3 col-xs-6 filter-result-info">
+                    <span>
+                        Showing {{filteredStores.length}}/{{stores.length}} entries
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered table-striped table-responsive">
+                        <thead>
+                        <tr>
+                            <th class="col-md-1">
+                                <div class=" th">
+                                </div>
+                            </th>
+
+                            <th class="col-md-10">
+                                <div class=" th">
+                                    Cluster Name
                         <span class="glyphicon glyphicon-chevron-up"
                               data-ng-click=" order('name') "
                               data-ng-class="{active: row == 'name'}"></span>
                         <span class="glyphicon glyphicon-chevron-down"
                               data-ng-click=" order('-name') "
                               data-ng-class="{active: row == '-name'}"></span>
-                </div></th>
-                <th class=" th"><div >
-                    Operation
-                </div></th>
-                
-            </tr>
-            </thead>
-            <tbody>
-            <tr data-ng-repeat="store in currentPageStores">
-                <td>{{store.name}}</td>
-                <td>
-                  </td>
-            </tr>
-            </tbody>
-        </table>
+                                </div>
+                            </th>
 
-        <footer class="table-footer">
-            <div class="row">
-                <div class="col-md-6 page-num-info">
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr data-ng-repeat="store in currentPageStores">
+                            <td><input type="radio" ng-model="selectedRow"></td>
+                            <td>{{store.name}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <footer class="table-footer">
+                        <div class="row">
+                            <div class="col-md-6 page-num-info">
                     <span>
-                        Show 
+                        Show
                         <select data-ng-model="numPerPage"
                                 data-ng-options="num for num in numPerPageOpt"
                                 data-ng-change="onNumPerPageChange()">
-                        </select> 
+                        </select>
                         entries per page
                     </span>
+                            </div>
+                            <div class="col-md-6 text-right pagination-container">
+                                <pagination class="pagination-sm"
+                                            ng-model="currentPage"
+                                            total-items="filteredStores.length"
+                                            max-size="4"
+                                            ng-change="select(currentPage)"
+                                            items-per-page="numPerPage"
+                                            rotate="false"
+                                            boundary-links="true"></pagination>
+                            </div>
+                        </div>
+                    </footer>
                 </div>
-                <div class="col-md-6 text-right pagination-container">
-                    <pagination class="pagination-sm"
-                                ng-model="currentPage"
-                                total-items="filteredStores.length"
-                                max-size="4"
-                                ng-change="select(currentPage)"
-                                items-per-page="numPerPage"
-                                rotate="false"
-                                boundary-links="true"></pagination>
-                </div>
+                </dv>
             </div>
-        </footer>
     </section>
-
 
 
 </div>
