@@ -78,7 +78,21 @@ public class CameraClusterBLLImpl implements CameraClusterBLL {
     }
 
     @Override
-    public List<ValidationError> deleteCameraCluster(Long id) {
-        return cameraClusterDao.deleteCameraCluster(id);
+    public List<ValidationError> deleteCameraCluster(Long id)
+    {
+        List<ValidationError> errors = new ArrayList<ValidationError>();
+        try {
+            CameraCluster cameraCluster = findById(id);
+            if (cameraClusterDao.findById(cameraCluster.id) != null)
+                cameraClusterDao.deleteCameraCluster(cameraCluster);
+            else
+                errors.add(new ValidationError("cameraCluster.notFound", Messages.get("cameraCluster.notFound")));
+
+        } catch (Exception e) {
+            ValidationError error=new ValidationError(e.getMessage(),e.getMessage());
+            errors.add(error);
+        }
+
+        return errors;
     }
 }

@@ -13,6 +13,8 @@ import service.CameraClusterService;
 import service.CameraClusterServiceImpl;
 import service.CameraService;
 import service.CameraServiceImpl;
+import smpapi.AuthenticationApi;
+import smpapi.AuthenticationApiImpl;
 
 /**
  * Created by milan on 12/9/2014.
@@ -26,5 +28,7 @@ public class PlayModule extends AbstractModule {
         bind(CameraClusterDao.class).to(CameraClusterDaoImpl.class);
         bind(CameraClusterBLL.class).to(CameraClusterBLLImpl.class);
         bind(CameraClusterService.class).to(CameraClusterServiceImpl.class);
+
+        bind(AuthenticationApi.class).to(AuthenticationApiImpl.class);
     }
 }

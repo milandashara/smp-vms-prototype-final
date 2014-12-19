@@ -38,28 +38,12 @@ public class CameraClusterDaoImpl implements CameraClusterDao {
     @Override
     public void modifyCameraCluster(CameraCluster cameraCluster) {
         cameraCluster.update();
-
     }
 
     @Override
-    public List<ValidationError> deleteCameraCluster(Long id) {
-        CameraCluster cameraCluster = CameraCluster.find.byId(id);
-        List<ValidationError> errors = new ArrayList<ValidationError>();
-        if(cameraCluster == null)
-        {
-            ValidationError error = new ValidationError("cameraCluster.notFound", Messages.get("cameraCluster.notFound"));
-            errors.add(error);
-        }
-        try
-        {
-            cameraCluster.delete();
-        }
-        catch (Exception e)
-        {
-            ValidationError error=new ValidationError("error",e.getMessage());
-            errors.add(error);
-        }
-        return errors;
+    public void deleteCameraCluster(CameraCluster cameraCluster) {
+        CameraCluster cc = CameraCluster.find.ref(cameraCluster.id);
+        cc.delete();
     }
 
     @Override
