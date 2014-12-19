@@ -29,8 +29,8 @@ public class CameraClusterController extends Controller {
 
     private Form<CameraCluster> cameraClusterForm = Form.form(CameraCluster.class);
 
-    public Result findAll(String search) {
-        return ok(Json.toJson(cameraClusterService.search(search)));
+    public Result findAll() {
+        return ok(Json.toJson(cameraClusterService.findAll()));
 
     }
 
@@ -82,7 +82,10 @@ public class CameraClusterController extends Controller {
 
     public Result getAffectedCamerasBeforeDelete(long id) {
         CameraCluster cameraCluster = cameraClusterService.findById(id);
+        if(cameraCluster != null)
         return ok(Json.toJson(cameraCluster.cameras));
+        else
+        return ok("Cameras are not there for this cluster.");
     }
 
     public Result delete(Long id) {

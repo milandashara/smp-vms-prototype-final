@@ -17,11 +17,11 @@ public interface CameraClusterDao {
 
     CameraCluster findById(Long id);
 
-    void addCameraCluster(CameraCluster camera);
+    void addCameraCluster(CameraCluster cameraCluster);
 
-    void modifyCameraCluster(CameraCluster camera);
+    void modifyCameraCluster(CameraCluster cameraCluster);
 
-    List<ValidationError> deleteCameraCluster(Long id);
+    void deleteCameraCluster(CameraCluster cameraCluster);
 
     List<CameraCluster> findByCameraClusterNameExceptGivenId(String name,Long id);
 
