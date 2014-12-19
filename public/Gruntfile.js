@@ -80,7 +80,8 @@ module.exports = function(grunt) {
                     'scripts/vendor/angular-wizard.js',
                     'scripts/vendor/angular-ui-tree.js',
                     'scripts/vendor/jquery.vmap.min.js',
-                    'scripts/extras.js'
+                    'scripts/extras.js',
+                    'bower_components/angular-smart-table/dist/smart-table.debug.js'
                 ],
                 dest: 'dist/app.js'
             }

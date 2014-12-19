@@ -9,7 +9,8 @@ var app = angular.module("app", [
     "app.ui.ctrls",
     "app.controllers",
     "app.directives",
-    "smpvmsServices"]).run(["$rootScope", "$location",
+    "smpvmsServices",
+    "smart-table"]).run(["$rootScope", "$location",
     function ($rootScope, $location) {
 
         $(window).load(function () {

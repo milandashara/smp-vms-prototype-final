@@ -20,7 +20,8 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$
             });
         };
 
-
+        $scope.selectedCluster = 'Nijiya Market';
+        $scope.color = 'blue';
         $scope.stores = [{
             name: "Nijiya Market",
             price: "$$",
@@ -31,6 +32,31 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$
             price: "$",
             sales: 82,
             rating: 4.4
+        },{
+            name: "Tea Era",
+            price: "$",
+            sales: 874,
+            rating: 4
+        }, {
+            name: "Rogers Deli",
+            price: "$",
+            sales: 347,
+            rating: 4.2
+        }, {
+            name: "MoBowl",
+            price: "$$$",
+            sales: 24,
+            rating: 4.6
+        }, {
+            name: "The Milk Pail Market",
+            price: "$",
+            sales: 543,
+            rating: 4.5
+        }, {
+            name: "Nob Hill Foods",
+            price: "$$",
+            sales: 874,
+            rating: 4
         }];
         $scope.searchKeywords = "";
         $scope.filteredStores = [];
@@ -72,6 +98,7 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$
         $scope.numPerPage = $scope.numPerPageOpt[2];
         $scope.currentPage = 1;
         $scope.currentPageStores = [];
+
         (init = function () {
             $scope.search();
             $scope.select($scope.currentPage);
