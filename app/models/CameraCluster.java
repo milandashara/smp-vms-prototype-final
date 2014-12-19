@@ -14,7 +14,7 @@ import java.util.List;
 public class CameraCluster extends Model {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     public Long id;
 
     public String name;
