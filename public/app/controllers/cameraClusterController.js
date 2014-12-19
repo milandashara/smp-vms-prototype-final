@@ -4,21 +4,7 @@
 controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$http', 'cameraClusterService',
     function ($scope, $filter, $modal, $log, $http) {
         var init;
-        $scope.open = function (size) {
-            var modalInstance = $modal.open({
-                templateUrl: 'app/views/camera/modaltest.html',
-                controller: 'ModalInstanceCtrl',
-                size: size
 
-            });
-            modalInstance.result.then(function (cameraCluster) {
-                cameraCluster.$save(function (data, status) {
-                    $log.info('successful');
-                });
-            }, function () {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
 
         $scope.selectedCluster = 'Nijiya Market';
         $scope.color = 'blue';
@@ -120,6 +106,23 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$
             $modalInstance.dismiss('cancel');
         };
     }])
+    .controller('cameraClusterControler', ["$scope", "$filter", "$modal", "$log", '$http', 'cameraClusterService',
+        function ($scope, $filter, $modal, $log, $http){
+            $scope.open = function (size) {
+                var modalInstance = $modal.open({
+                    templateUrl: 'app/views/camera/modaltest.html',
+                    controller: 'ModalInstanceCtrl',
+                    size: size
 
+                });
+                modalInstance.result.then(function (cameraCluster) {
+                    cameraCluster.$save(function (data, status) {
+                        $log.info('successful');
+                    });
+                }, function () {
+                    $log.info('Modal dismissed at: ' + new Date());
+                });
+            };
+        } ])
 
 ;
