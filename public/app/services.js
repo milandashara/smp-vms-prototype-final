@@ -10,9 +10,21 @@ var smpvmsServices = angular.module('smpvmsServices', ['ngResource']);
 
 smpvmsServices.factory('cameraClusterService', ['$resource',
     function ($resource) {
-        return $resource('/api/cameraCluster/:id', {}, {
+        var src = $resource('api/cameraCluster/:size/:page',
+            {size: "@size", page: "@page"}, //parameters default
+            {
+                get: { method: "GET", params: {size:1 , page: 1},isArray:true},
+                save:{method:"POST"}
+                //GetTodo: { method: "GET", params: { id: 0 } },
+                //CreateTodo: { method: "POST", params: { content: "", order: 0, done: false } },
+                //UpdateTodo: { method: "PATCH", params: { /*...*/ } },
+                //DeleteTodo: { method: "DELETE", params: { id: 0 } },
+                //ResetTodos: { method: "GET", params: { cmd: "reset" } },
+            });
+        return src;
+        //return $resource('/api/cameraCluster/:size/:page',{size:123, page:'@id'},{
         //    query: {method: 'GET', params: {id: 'cameras'}, isArray: true}
-        });
+        //});
     }]);
         //return toastr.options = {
         //    closeButton: !0,

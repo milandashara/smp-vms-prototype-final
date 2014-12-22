@@ -10,8 +10,8 @@ var app = angular.module("app", [
     "app.controllers",
     "app.directives",
     "smpvmsServices",
-    "smart-table",
-    "angularUtils.directives.dirPagination"]).run(["$rootScope", "$location",
+    "smart-table"
+   ]).run(["$rootScope", "$location",
     function ($rootScope, $location) {
 
         $(window).load(function () {
