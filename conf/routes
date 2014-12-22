@@ -20,5 +20,9 @@ PUT           /api/cameraCluster/:id        @controllers.CameraClusterController
 DELETE        /api/cameraCluster/:id        @controllers.CameraClusterController.delete(id:Long)
 GET           /api/cameraCluster/affectedCameras/:id @controllers.CameraClusterController.getAffectedCamerasBeforeDelete(id:Long)
 
+
+#Search And View Camera
+GET           /api/searchCamera/:node        @controllers.SearchAndViewCameraController.searchByNode(node:String)
+GET           /api/searchCamera/             @controllers.SearchAndViewCameraController.searchAndViewCamera()
 # Map static resources from the /public folder to the /assets URL path
 GET           /*file                        controllers.Assets.at(path="/public", file)
