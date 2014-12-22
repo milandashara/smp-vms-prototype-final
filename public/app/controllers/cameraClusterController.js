@@ -1,12 +1,20 @@
 /**
  * Created by like on 17/12/14.
  */
-controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$http', 'cameraClusterService',
-    function ($scope, $filter, $modal, $log, $http,cameraClusterService) {
-        var init;
 
-        $scope.selectedCluster = 'Nijiya Market';
-        $scope.clusters = [];
+controlGlobal.service('cameraClusterTable',function(){
+    var cameraClusters = [{
+    }];
+    var currentPageCluters = [] ;
+    return {
+        cameraClusters: cameraClusters,
+        currentPage: currentPageCluters,
+    };
+})
+controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", 'cameraClusterService','cameraClusterTable',
+    function ($scope, $filter, $modal, $log,cameraClusterService,cameraClusterTable) {
+        var init;
+        $scope.clusters = cameraClusterTable.cameraClusters;
         $scope.searchKeywords = "";
         $scope.filteredclusters = [];
         $scope.row = "";
@@ -14,7 +22,12 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$
             var end, start;
             start = (page - 1) * $scope.numPerPage;
             end = start + $scope.numPerPage;
-            $scope.currentPageclusters = $scope.filteredclusters.slice(start, end);
+            $scope.currentPageclusters.length = 0;
+            $scope.updateFilteredClusters();
+            var filtered = $scope.filteredclusters.slice(start, end);
+            for(var i = 0 ; i <filtered.length;i++ ){
+                $scope.currentPageclusters.push(filtered[i]);
+            }
         };
 
         $scope.onFilterChange = function () {
@@ -30,8 +43,11 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$
             $scope.select(1);
             $scope.currentPage = 1;
         };
-        $scope.search = function () {
+        $scope.updateFilteredClusters = function(){
             $scope.filteredclusters = $filter("filter")($scope.clusters, $scope.searchKeywords);
+        }
+        $scope.search = function () {
+            $scope.updateFilteredClusters();
             $scope.onFilterChange();
         };
         $scope.order = function (rowName) {
@@ -46,19 +62,24 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$
         $scope.numPerPageOpt = [3, 5, 10, 20];
         $scope.numPerPage = $scope.numPerPageOpt[2];
         $scope.currentPage = 1;
-        $scope.currentPageclusters = [];
+        $scope.currentPageclusters =cameraClusterTable.currentPage;
         $scope.updateTablemy  = function(){
             cameraClusterService.query(function(data){
-                $scope.clusters = data;
-$log.info(data);
+
+                $scope.clusters.length = 0;
+                for(var i = 0 ; i < data.length;i++){
+                   $scope.clusters.push(data[i]);
+                }
+                init();
+                $log.info(cameraClusterTable);
+                $log.info($scope.currentPageclusters);
             })
         }
         (init = function () {
             $scope.search();
             $scope.select($scope.currentPage);
         });
-        $scope.search();
-        $scope.updateTablemy();
+
     }
 ])
 
@@ -74,8 +95,8 @@ $log.info(data);
             $modalInstance.dismiss('cancel');
         };
     }])
-    .controller('cameraClusterControler', ["$scope", "$filter", "$modal", "$log", '$http', 'cameraClusterService',
-        function ($scope, $filter, $modal, $log, $http){
+    .controller('cameraClusterControler', ["$scope", "$filter", "$modal", "$log",  'cameraClusterService','cameraClusterTable',
+        function ($scope, $filter, $modal, $log,cameraCluster,cameraClusterTable ){
             $scope.open = function (size) {
                 var modalInstance = $modal.open({
                     templateUrl: 'app/views/camera/modaltest.html',
@@ -85,7 +106,9 @@ $log.info(data);
                 });
                 modalInstance.result.then(function (cameraCluster) {
                     cameraCluster.$save(function (data, status) {
-                        $log.info('successful');
+                        cameraClusterTable.cameraClusters.push(data);
+                        cameraClusterTable.currentPage.unshift(data);
+                        $log.info('data'+ data);
                     });
                 }, function () {
                     $log.info('Modal dismissed at: ' + new Date());

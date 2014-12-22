@@ -53,7 +53,7 @@ public class CameraClusterController extends Controller {
         else {
             ObjectNode result = Json.newObject();
             result.put("success", String.format(Messages.get("cameraCluster.addSuccess")));
-            return ok(Json.toJson(result));
+            return ok(Json.toJson(cameraCluster));
         }
 
     }
