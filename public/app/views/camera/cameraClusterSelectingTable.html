@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-sm-3 col-xs-6 filter-result-info">
                     <span>
-                        Showing {{filteredStores.length}}/{{stores.length}} entries
+                        Showing {{filteredclusters.length}}/{{clusters.length}} entries
                     </span>
                         </div>
                     </div>
@@ -50,9 +50,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr data-ng-repeat="store in currentPageStores">
-                        <td><input type="radio" ng-model="$parent.selectedCluster" ng-value="store"></td>
-                        <td>{{store.name}}</td>
+                    <tr data-ng-repeat="cluster in currentPageclusters">
+                        <td><input type="radio" ng-model="$parent.selectedCluster" ng-value="cluster"></td>
+                        <td>{{clusters.name}}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -72,7 +72,7 @@
                         <div class="col-md-6 text-right pagination-container">
                             <pagination class="pagination-sm"
                                         ng-model="currentPage"
-                                        total-items="filteredStores.length"
+                                        total-items="filteredclusters.length"
                                         max-size="4"
                                         ng-change="select(currentPage)"
                                         items-per-page="numPerPage"

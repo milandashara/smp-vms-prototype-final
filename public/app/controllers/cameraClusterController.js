@@ -2,56 +2,19 @@
  * Created by like on 17/12/14.
  */
 controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$http', 'cameraClusterService',
-    function ($scope, $filter, $modal, $log, $http) {
+    function ($scope, $filter, $modal, $log, $http,cameraClusterService) {
         var init;
 
-
         $scope.selectedCluster = 'Nijiya Market';
-        $scope.color = 'blue';
-        $scope.stores = [{
-            name: "Nijiya Market",
-            price: "$$",
-            sales: 292,
-            rating: 4
-        }, {
-            name: "House of Bagels",
-            price: "$",
-            sales: 82,
-            rating: 4.4
-        },{
-            name: "Tea Era",
-            price: "$",
-            sales: 874,
-            rating: 4
-        }, {
-            name: "Rogers Deli",
-            price: "$",
-            sales: 347,
-            rating: 4.2
-        }, {
-            name: "MoBowl",
-            price: "$$$",
-            sales: 24,
-            rating: 4.6
-        }, {
-            name: "The Milk Pail Market",
-            price: "$",
-            sales: 543,
-            rating: 4.5
-        }, {
-            name: "Nob Hill Foods",
-            price: "$$",
-            sales: 874,
-            rating: 4
-        }];
+        $scope.clusters = [];
         $scope.searchKeywords = "";
-        $scope.filteredStores = [];
+        $scope.filteredclusters = [];
         $scope.row = "";
         $scope.select = function (page) {
             var end, start;
             start = (page - 1) * $scope.numPerPage;
             end = start + $scope.numPerPage;
-            $scope.currentPageStores = $scope.filteredStores.slice(start, end);
+            $scope.currentPageclusters = $scope.filteredclusters.slice(start, end);
         };
 
         $scope.onFilterChange = function () {
@@ -68,13 +31,13 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$
             $scope.currentPage = 1;
         };
         $scope.search = function () {
-            $scope.filteredStores = $filter("filter")($scope.stores, $scope.searchKeywords);
+            $scope.filteredclusters = $filter("filter")($scope.clusters, $scope.searchKeywords);
             $scope.onFilterChange();
         };
         $scope.order = function (rowName) {
             if($scope.row !== rowName){
                 $scope.row = rowName;
-                    $scope.filteredStores = $filter("orderBy")($scope.stores, rowName);
+                    $scope.filteredclusters= $filter("orderBy")($scope.clusters, rowName);
                     $scope.onOrderChange();
             }else{
                 void 0;
@@ -83,14 +46,19 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", '$
         $scope.numPerPageOpt = [3, 5, 10, 20];
         $scope.numPerPage = $scope.numPerPageOpt[2];
         $scope.currentPage = 1;
-        $scope.currentPageStores = [];
-
+        $scope.currentPageclusters = [];
+        $scope.updateTablemy  = function(){
+            cameraClusterService.query(function(data){
+                $scope.clusters = data;
+$log.info(data);
+            })
+        }
         (init = function () {
             $scope.search();
             $scope.select($scope.currentPage);
         });
         $scope.search();
-
+        $scope.updateTablemy();
     }
 ])
 
