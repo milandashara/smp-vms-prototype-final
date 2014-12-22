@@ -19,14 +19,14 @@
                         </div>
                         <div class="col-sm-3 col-xs-6 filter-result-info">
                     <span>
-                        Showing {{filteredStores.length}}/{{stores.length}} entries
+                        Showing {{filteredclusters.length}}/{{clusters.length}} entries
                     </span>
                         </div>
                     </div>
                 </div>
 
 
-                <table class="table table-bordered table-striped">
+                <table st-table="rowCollection" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th class="col-md-1">
@@ -50,13 +50,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr dir-paginate="store in clusters | itemsPerPage: 3">
-                        <td><input type="radio" ng-model="$parent.selectedCluster" ng-value="store"></td>
-                        <td>{{store.name}}</td>
+                    <tr data-ng-repeat="cluster in currentPageclusters">
+                        <td><input type="radio" ng-model="$parent.selectedCluster" ng-value="cluster"></td>
+                        <td>{{cluster.name}}</td>
                     </tr>
                     </tbody>
                 </table>
-
 
                 <footer class="table-footer">
                     <div class="row">
@@ -71,18 +70,14 @@
                     </span>
                         </div>
                         <div class="col-md-6 text-right pagination-container">
-                            <!--<pagination class="pagination-sm"-->
-                                        <!--ng-model="currentPage"-->
-                                        <!--total-items="filteredStores.length"-->
-                                        <!--max-size="4"-->
-                                        <!--ng-change="select(currentPage)"-->
-                                        <!--items-per-page="numPerPage"-->
-                                        <!--rotate="false"-->
-                                        <!--boundary-links="true"></pagination>-->
-
-                            <div class="text-center">
-                                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
-                            </div>
+                            <pagination class="pagination-sm"
+                                        ng-model="currentPage"
+                                        total-items="filteredclusters.length"
+                                        max-size="4"
+                                        ng-change="select(currentPage)"
+                                        items-per-page="numPerPage"
+                                        rotate="false"
+                                        boundary-links="true"></pagination>
                         </div>
                     </div>
                 </footer>

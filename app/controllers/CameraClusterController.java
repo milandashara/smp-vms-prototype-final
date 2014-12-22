@@ -3,6 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.inject.Inject;
+import common.HeaderAction;
 import models.Camera;
 import models.CameraCluster;
 import play.data.validation.ValidationError;
@@ -12,6 +13,7 @@ import play.data.Form;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.With;
 import service.CameraClusterService;
 import service.CameraService;
 
@@ -22,6 +24,7 @@ import java.util.List;
  * Created by Mani on 12/16/2014.
  */
 @BodyParser.Of(BodyParser.Json.class)
+@With(HeaderAction.class)
 public class CameraClusterController extends Controller {
 
     @Inject
@@ -31,7 +34,6 @@ public class CameraClusterController extends Controller {
 
     public Result findAll(int pageSize,int pageIndex) {
         return ok(Json.toJson(cameraClusterService.findAll(pageSize,pageIndex)));
-
     }
 
     public Result get(Long id) {
@@ -53,7 +55,7 @@ public class CameraClusterController extends Controller {
         else {
             ObjectNode result = Json.newObject();
             result.put("success", String.format(Messages.get("cameraCluster.addSuccess")));
-            return ok(Json.toJson(result));
+            return ok(Json.toJson(cameraCluster));
         }
 
     }

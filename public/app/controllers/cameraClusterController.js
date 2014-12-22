@@ -53,8 +53,8 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", 'c
         $scope.order = function (rowName) {
             if($scope.row !== rowName){
                 $scope.row = rowName;
-                $scope.filteredclusters= $filter("orderBy")($scope.clusters, rowName);
-                $scope.onOrderChange();
+                    $scope.filteredclusters= $filter("orderBy")($scope.clusters, rowName);
+                    $scope.onOrderChange();
             }else{
                 void 0;
             }
@@ -64,10 +64,11 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", 'c
         $scope.currentPage = 1;
         $scope.currentPageclusters =cameraClusterTable.currentPage;
         $scope.updateTablemy  = function(){
-            cameraClusterService.query(function(data){
+            cameraClusterService.get.query(function(data){
+
                 $scope.clusters.length = 0;
                 for(var i = 0 ; i < data.length;i++){
-                    $scope.clusters.push(data[i]);
+                   $scope.clusters.push(data[i]);
                 }
                 init();
                 $log.info(cameraClusterTable);
@@ -78,7 +79,7 @@ controlGlobal.controller("tableCtrl", ["$scope", "$filter", "$modal", "$log", 'c
             $scope.search();
             $scope.select($scope.currentPage);
         });
-        $scope.updateTablemy();
+
     }
 ])
 
