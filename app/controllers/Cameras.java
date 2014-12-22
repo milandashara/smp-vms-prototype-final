@@ -3,6 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.inject.Inject;
+import common.HeaderAction;
 import models.Camera;
 import play.data.Form;
 import play.data.validation.ValidationError;
@@ -11,6 +12,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.With;
 import service.CameraService;
 
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.List;
  * Created by milan on 12/9/2014.
  */
 @BodyParser.Of(BodyParser.Json.class)
+@With(HeaderAction.class)
 public class Cameras extends Controller {
 
     @Inject
