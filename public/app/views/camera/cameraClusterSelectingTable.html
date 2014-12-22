@@ -26,7 +26,7 @@
                 </div>
 
 
-                <table st-table="rowCollection" class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th class="col-md-1">
@@ -50,12 +50,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr data-ng-repeat="store in currentPageStores">
+                    <tr dir-paginate="store in clusters | itemsPerPage: 3">
                         <td><input type="radio" ng-model="$parent.selectedCluster" ng-value="store"></td>
                         <td>{{store.name}}</td>
                     </tr>
                     </tbody>
                 </table>
+
 
                 <footer class="table-footer">
                     <div class="row">
@@ -70,14 +71,18 @@
                     </span>
                         </div>
                         <div class="col-md-6 text-right pagination-container">
-                            <pagination class="pagination-sm"
-                                        ng-model="currentPage"
-                                        total-items="filteredStores.length"
-                                        max-size="4"
-                                        ng-change="select(currentPage)"
-                                        items-per-page="numPerPage"
-                                        rotate="false"
-                                        boundary-links="true"></pagination>
+                            <!--<pagination class="pagination-sm"-->
+                                        <!--ng-model="currentPage"-->
+                                        <!--total-items="filteredStores.length"-->
+                                        <!--max-size="4"-->
+                                        <!--ng-change="select(currentPage)"-->
+                                        <!--items-per-page="numPerPage"-->
+                                        <!--rotate="false"-->
+                                        <!--boundary-links="true"></pagination>-->
+
+                            <div class="text-center">
+                                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+                            </div>
                         </div>
                     </div>
                 </footer>

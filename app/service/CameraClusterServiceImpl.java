@@ -17,8 +17,8 @@ public class CameraClusterServiceImpl implements CameraClusterService {
     CameraClusterBLL cameraClusterBLL;
 
     @Override
-    public List<CameraCluster> findAll() {
-        return cameraClusterBLL.findAll();
+    public List<CameraCluster> findAll(int pageSize,int pageIndex) {
+        return cameraClusterBLL.findAll(pageSize,pageIndex);
     }
     @Override
     public List<CameraCluster> search(String searchStr) {

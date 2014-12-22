@@ -81,7 +81,8 @@ module.exports = function(grunt) {
                     'scripts/vendor/angular-ui-tree.js',
                     'scripts/vendor/jquery.vmap.min.js',
                     'scripts/extras.js',
-                    'scripts/vendor/smart-table.debug.js'
+                    'scripts/vendor/smart-table.debug.js',
+                    'scripts/vendor/dirPagination.js'
                 ],
                 dest: 'dist/app.js'
             }

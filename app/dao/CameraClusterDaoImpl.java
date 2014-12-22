@@ -14,9 +14,16 @@ import java.util.List;
 public class CameraClusterDaoImpl implements CameraClusterDao {
 
     @Override
-    public List<CameraCluster> findAll() {
-        return CameraCluster.find.all();
+    public List<CameraCluster> findAll(int pageSize,int pageIndex) {
+        System.out.println(findtotalNumberofCameraClusters());
+        return CameraCluster.find.findPagingList(pageSize).getPage(pageIndex).getList();
     }
+
+    @Override
+    public Long findtotalNumberofCameraClusters() {
+        return Integer.toUnsignedLong(CameraCluster.find.findRowCount());
+    }
+
 
     @Override
     public List<CameraCluster> findByCameraClusterName(String search) {
@@ -32,7 +39,6 @@ public class CameraClusterDaoImpl implements CameraClusterDao {
     public void addCameraCluster(CameraCluster cameraCluster) {
 
         cameraCluster.save();
-
     }
 
     @Override

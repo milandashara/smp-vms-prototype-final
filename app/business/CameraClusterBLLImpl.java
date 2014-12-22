@@ -19,8 +19,8 @@ public class CameraClusterBLLImpl implements CameraClusterBLL {
     CameraClusterDao cameraClusterDao;
 
     @Override
-    public List<CameraCluster> findAll() {
-        return cameraClusterDao.findAll();
+    public List<CameraCluster> findAll(int pageSize,int pageIndex) {
+        return cameraClusterDao.findAll(pageSize,pageIndex);
     }
 
     @Override

@@ -11,7 +11,9 @@ import java.util.List;
  */
 public interface CameraClusterDao {
 
-    public List<CameraCluster> findAll();
+    List<CameraCluster> findAll(int pageSize,int pageIndex);
+
+    Long findtotalNumberofCameraClusters();
 
     List<CameraCluster> findByCameraClusterName(String search);
 

@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface CameraClusterBLL {
 
-    public List<CameraCluster> findAll();
+    public List<CameraCluster> findAll(int pageSize,int pageIndex);
 
     List<CameraCluster> findByCameraClusterName(String search);
 

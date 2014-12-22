@@ -10,7 +10,7 @@ var smpvmsServices = angular.module('smpvmsServices', ['ngResource']);
 
 smpvmsServices.factory('cameraClusterService', ['$resource',
     function ($resource) {
-        return $resource('/api/cameraCluster/:id', {}, {
+        return $resource('/api/cameraCluster', {}, {
         //    query: {method: 'GET', params: {id: 'cameras'}, isArray: true}
         });
     }]);

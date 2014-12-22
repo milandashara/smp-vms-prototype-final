@@ -29,8 +29,8 @@ public class CameraClusterController extends Controller {
 
     private Form<CameraCluster> cameraClusterForm = Form.form(CameraCluster.class);
 
-    public Result findAll() {
-        return ok(Json.toJson(cameraClusterService.findAll()));
+    public Result findAll(int pageSize,int pageIndex) {
+        return ok(Json.toJson(cameraClusterService.findAll(pageSize,pageIndex)));
 
     }
 

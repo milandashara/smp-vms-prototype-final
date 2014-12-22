@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface CameraClusterService {
 
-    public List<CameraCluster> findAll();
+    public List<CameraCluster> findAll(int pageSize,int pageIndex);
 
     List<CameraCluster> search(String searchStr);
 
